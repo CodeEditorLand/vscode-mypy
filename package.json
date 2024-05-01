@@ -1,36 +1,21 @@
 {
-	"name": "mypy-type-checker",
-	"displayName": "Mypy Type Checker",
-	"version": "0.0.1",
-	"private": false,
-	"description": "%extension.description%",
-	"keywords": [
-		"land"
+	"activationEvents": [
+		"onLanguage:python",
+		"workspaceContains:mypy.ini"
 	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandMypy#readme",
+	"author": {
+		"email": "Land@PlayForm.Cloud",
+		"name": "🌆 — Land —",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandMypy/issues"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandMypy.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "🌆 — Land —",
-		"email": "Land@PlayForm.Cloud",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
-	"type": "module",
-	"main": "./dist/extension.js",
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"compile": "webpack",
-		"compile-tests": "tsc -p . --outDir out",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"tests": "node ./out/test/ts_tests/runTest.js",
-		"vsce-package": "vsce package -o mypy.vsix",
-		"watch-tests": "tsc -p . -w --outDir out"
+	"capabilities": {
+		"virtualWorkspaces": {
+			"description": "Virtual Workspaces are not supported with mypy.",
+			"supported": false
+		}
 	},
 	"contributes": {
 		"commands": [
@@ -171,13 +156,10 @@
 			}
 		}
 	},
-	"activationEvents": [
-		"onLanguage:python",
-		"workspaceContains:mypy.ini"
-	],
 	"dependencies": {
 		"fs-extra": "11.2.0"
 	},
+	"description": "%extension.description%",
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
@@ -192,26 +174,44 @@
 		"ts-loader": "9.5.1",
 		"typemoq": "2.1.0"
 	},
+	"displayName": "Mypy Type Checker",
 	"extensionDependencies": [
 		"ms-python.python"
 	],
-	"publishConfig": {
-		"access": "public"
-	},
-	"icon": "icon.png",
 	"galleryBanner": {
 		"color": "#1e415e",
 		"theme": "dark"
 	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandMypy#readme",
+	"icon": "icon.png",
+	"keywords": [
+		"land"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "./dist/extension.js",
+	"name": "mypy-type-checker",
 	"preview": true,
-	"capabilities": {
-		"virtualWorkspaces": {
-			"description": "Virtual Workspaces are not supported with mypy.",
-			"supported": false
-		}
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandMypy.git"
+	},
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"compile": "webpack",
+		"compile-tests": "tsc -p . --outDir out",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"tests": "node ./out/test/ts_tests/runTest.js",
+		"vsce-package": "vsce package -o mypy.vsix",
+		"watch-tests": "tsc -p . -w --outDir out"
 	},
 	"serverInfo": {
 		"module": "mypy",
 		"name": "Mypy"
-	}
+	},
+	"type": "module",
+	"version": "0.0.1"
 }
