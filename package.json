@@ -1,13 +1,14 @@
 {
-	"activationEvents": [
-		"onLanguage:python",
-		"workspaceContains:mypy.ini"
-	],
-	"capabilities": {
-		"virtualWorkspaces": {
-			"description": "Virtual Workspaces are not supported with mypy.",
-			"supported": false
-		}
+	"name": "mypy-type-checker",
+	"displayName": "Mypy Type Checker",
+	"description": "%extension.description%",
+	"main": "./dist/extension.js",
+	"scripts": {
+		"compile": "webpack",
+		"compile-tests": "tsc -p . --outDir out",
+		"tests": "node ./out/test/ts_tests/runTest.js",
+		"vsce-package": "vsce package -o mypy.vsix",
+		"watch-tests": "tsc -p . -w --outDir out"
 	},
 	"contributes": {
 		"commands": [
@@ -148,10 +149,13 @@
 			}
 		}
 	},
+	"activationEvents": [
+		"onLanguage:python",
+		"workspaceContains:mypy.ini"
+	],
 	"dependencies": {
 		"fs-extra": "11.2.0"
 	},
-	"description": "%extension.description%",
 	"devDependencies": {
 		"@types/chai": "4.3.17",
 		"@types/fs-extra": "11.0.4",
@@ -164,24 +168,20 @@
 		"ts-loader": "9.5.1",
 		"typemoq": "2.1.0"
 	},
-	"displayName": "Mypy Type Checker",
 	"extensionDependencies": [
 		"ms-python.python"
 	],
+	"icon": "icon.png",
 	"galleryBanner": {
 		"color": "#1e415e",
 		"theme": "dark"
 	},
-	"icon": "icon.png",
-	"main": "./dist/extension.js",
-	"name": "mypy-type-checker",
 	"preview": true,
-	"scripts": {
-		"compile": "webpack",
-		"compile-tests": "tsc -p . --outDir out",
-		"tests": "node ./out/test/ts_tests/runTest.js",
-		"vsce-package": "vsce package -o mypy.vsix",
-		"watch-tests": "tsc -p . -w --outDir out"
+	"capabilities": {
+		"virtualWorkspaces": {
+			"description": "Virtual Workspaces are not supported with mypy.",
+			"supported": false
+		}
 	},
 	"serverInfo": {
 		"module": "mypy",
