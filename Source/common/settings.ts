@@ -19,17 +19,27 @@ const DEFAULT_SEVERITY: Record<string, string> = {
 
 export interface ISettings {
 	cwd: string;
+
 	workspace: string;
+
 	args: string[];
+
 	severity: Record<string, string>;
+
 	path: string[];
+
 	ignorePatterns: string[];
+
 	interpreter: string[];
 
 	importStrategy: string;
+
 	showNotifications: string;
+
 	extraPaths: string[];
+
 	reportingScope: string;
+
 	preferDaemon: boolean;
 }
 
@@ -57,9 +67,11 @@ function resolveVariables(
 	if (home) {
 		substitutions.set("${userHome}", home);
 	}
+
 	if (workspace) {
 		substitutions.set("${workspaceFolder}", workspace.uri.fsPath);
 	}
+
 	substitutions.set("${cwd}", process.cwd());
 
 	getWorkspaceFolders().forEach((w) => {
@@ -90,6 +102,7 @@ function resolveVariables(
 		for (const [key, value] of substitutions) {
 			s = s.replace(key, value);
 		}
+
 		return s;
 	});
 }
@@ -117,6 +130,7 @@ function getExtraPaths(
 	if (legacyExtraPaths.length > 0) {
 		traceLog("Using cwd from `python.analysis.extraPaths`.");
 	}
+
 	return legacyExtraPaths;
 }
 
@@ -270,12 +284,15 @@ export function logLegacySettings(namespace: string): void {
 				traceWarn(
 					`"python.linting.mypyEnabled" is deprecated. You can remove that setting.`,
 				);
+
 				traceWarn(
 					"The mypy extension is always enabled. However, you can disable it per workspace using the extensions view.",
 				);
+
 				traceWarn(
 					"You can exclude files and folders using the `python.linting.ignorePatterns` setting.",
 				);
+
 				traceWarn(
 					`"python.linting.mypyEnabled" value for workspace ${workspace.uri.fsPath}: ${legacyMypyEnabled}`,
 				);
@@ -287,6 +304,7 @@ export function logLegacySettings(namespace: string): void {
 				traceWarn(
 					`"python.linting.cwd" is deprecated. Use "${namespace}.cwd" instead.`,
 				);
+
 				traceWarn(
 					`"python.linting.cwd" value for workspace ${workspace.uri.fsPath}: ${legacyCwd}`,
 				);
@@ -301,9 +319,11 @@ export function logLegacySettings(namespace: string): void {
 				traceWarn(
 					`"python.linting.mypyArgs" is deprecated. Use "${namespace}.args" instead.`,
 				);
+
 				traceWarn(
 					`"python.linting.mypyArgs" value for workspace ${workspace.uri.fsPath}:`,
 				);
+
 				traceWarn(`\n${JSON.stringify(legacyArgs, null, 4)}`);
 			}
 
@@ -313,9 +333,11 @@ export function logLegacySettings(namespace: string): void {
 				traceWarn(
 					`"python.linting.mypyPath" is deprecated. Use "${namespace}.path" instead.`,
 				);
+
 				traceWarn(
 					`"python.linting.mypyPath" value for workspace ${workspace.uri.fsPath}:`,
 				);
+
 				traceWarn(`\n${JSON.stringify(legacyPath, null, 4)}`);
 			}
 		} catch (err) {
